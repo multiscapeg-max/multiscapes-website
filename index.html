@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multiscapes Group – Landscaping Melbourne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --earth: #1A3A20;
+    --sage: #2E6B38;
+    --moss: #4A8B52;
+    --cream: #F4F2EA;
+    --stone: #A89880;
+    --charcoal: #111810;
+    --white: #ffffff;
+    --text: #1E2A1E;
+    --text-light: #4A5E4A;
+    --accent: #C4832A;
+    --accent-light: #E8A84D;
+    --green-dark: #1A3A20;
+    --green-mid: #2E6B38;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 92px;
+    background: rgba(28,32,24,0.92);
+    backdrop-filter: blur(12px);
+    transition: background 0.3s, height 0.3s;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .nav-logo-img {
+    height: 84px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
+  }
+  .nav-logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.01em;
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+  .nav-logo-text span {
+    display: block;
+    color: var(--accent-light);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.82);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent-light); }
+  .nav-cta {
+    background: var(--accent);
+    color: white !important;
+    padding: 10px 22px;
+    border-radius: 4px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--accent-light) !important; color: var(--charcoal) !important; }
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* ── HERO SLIDER ── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+  .slide.active { opacity: 1; }
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(28,32,24,0.72) 0%,
+      rgba(28,32,24,0.3) 60%,
+      rgba(28,32,24,0.1) 100%
+    );
+  }
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 90%;
+    max-width: 760px;
+    color: white;
+    z-index: 2;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 16px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--accent-light);
+  }
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 300;
+    color: rgba(255,255,255,0.88);
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    padding: 15px 36px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); color: var(--charcoal); }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.7);
+    color: white;
+    text-decoration: none;
+    padding: 13px 34px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    transition: border-color 0.2s, background 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-outline:hover { border-color: var(--accent-light); background: rgba(255,255,255,0.1); color: white; }
+
+  /* Slider controls */
+  .slide-caption {
+    position: absolute;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.6);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    z-index: 2;
+    pointer-events: none;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    white-space: nowrap;
+  }
+  .slide-dots {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    border: none;
+    padding: 0;
+  }
+  .dot.active { background: var(--accent-light); transform: scale(1.3); }
+  .slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: background 0.2s;
+    backdrop-filter: blur(4px);
+  }
+  .slide-arrow:hover { background: rgba(196,131,42,0.5); }
+  .slide-prev { left: 24px; }
+  .slide-next { right: 24px; }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    background: var(--earth);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    padding: 32px 48px;
+    text-align: center;
+    color: white;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    flex: 1;
+    min-width: 140px;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--accent-light);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-top: 6px;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    padding: 100px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-text .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .about-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 900;
+    line-height: 1.2;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+  }
+  .about-text p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-light);
+    margin-bottom: 16px;
+  }
+  .about-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .about-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .about-feature::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 50%;
+    background: var(--moss);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='white' d='M3 8l4 4 6-7' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: 14px;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 1px;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-img-main {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .about-badge {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    background: var(--accent);
+    color: white;
+    padding: 20px 24px;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(196,131,42,0.4);
+  }
+  .about-badge-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .about-badge-text {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    margin-top: 4px;
+  }
+
+  /* ── SERVICES ── */
+  .services {
+    background: var(--cream);
+    padding: 100px 40px;
+  }
+  .section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 64px;
+  }
+  .section-header .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: var(--charcoal);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .section-header p {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.7;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .service-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  }
+  .service-card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  .service-card-body {
+    padding: 28px;
+  }
+  .service-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    background: var(--earth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .service-icon svg { width: 24px; height: 24px; fill: var(--accent-light); }
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 10px;
+  }
+  .service-card p {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tag {
+    background: var(--cream);
+    color: var(--earth);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(44,62,45,0.15);
+  }
+
+  /* ── GALLERY ── */
+  .gallery {
+    padding: 100px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 220px);
+    gap: 14px;
+    margin-top: 56px;
+  }
+  .gallery-item {
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .gallery-item:hover img { transform: scale(1.07); }
+  .gallery-item:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .gallery-item:nth-child(4) { grid-column: span 2; }
+  .gallery-item:nth-child(9) { grid-column: span 2; }
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(28,32,24,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-overlay span {
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0 16px;
+  }
+
+  /* ── WHY US ── */
+  .why-us {
+    background: var(--earth);
+    padding: 100px 40px;
+    color: white;
+  }
+  .why-us .section-header h2 { color: white; }
+  .why-us .section-header p { color: rgba(255,255,255,0.7); }
+  .why-us .section-header .eyebrow { color: var(--accent-light); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 36px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .why-item {
+    text-align: center;
+    padding: 40px 24px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .why-item:hover {
+    border-color: var(--accent);
+    background: rgba(196,131,42,0.07);
+  }
+  .why-item-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+  .why-item-icon svg { width: 28px; height: 28px; fill: white; }
+  .why-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: white;
+  }
+  .why-item p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+  }
+
+  /* ── SERVICE AREA ── */
+  .area {
+    padding: 80px 40px;
+    text-align: center;
+    background: var(--cream);
+  }
+  .area h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+  }
+  .area p {
+    font-size: 1rem;
+    color: var(--text-light);
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .area-map {
+    background: white;
+    border: 2px solid rgba(44,62,45,0.12);
+    border-radius: 10px;
+    padding: 28px 40px;
+    display: inline-block;
+    max-width: 600px;
+    width: 100%;
+  }
+  .area-map-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 16px;
+  }
+  .area-suburbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+  .suburb-tag {
+    background: var(--earth);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 100px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact-info .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .contact-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--charcoal);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .contact-info p {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    color: var(--text);
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--accent); }
+  .contact-link-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-link-icon.whatsapp { background: #25D366; }
+  .contact-link-icon.phone { background: var(--earth); }
+  .contact-link-icon.email { background: var(--sage); }
+  .contact-link-icon svg { width: 22px; height: 22px; fill: white; }
+  .contact-link-text strong {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .contact-link-text span {
+    font-size: 0.95rem;
+    color: var(--text-light);
+  }
+  .contact-form {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 44px 40px;
+  }
+  .contact-form h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 28px;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .form-group label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 12px 16px;
+    border: 1.5px solid rgba(44,62,45,0.2);
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    background: white;
+    color: var(--text);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--moss);
+  }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .btn-submit {
+    width: 100%;
+    background: var(--earth);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+  }
+  .btn-submit:hover { background: var(--sage); }
+
+  /* WhatsApp FAB */
+  .whatsapp-fab {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 200;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #25D366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: fab-pulse 3s infinite;
+  }
+  .whatsapp-fab:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 28px rgba(37,211,102,0.6);
+  }
+  .whatsapp-fab svg { width: 32px; height: 32px; fill: white; }
+  @keyframes fab-pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.45); }
+    50% { box-shadow: 0 4px 32px rgba(37,211,102,0.75); }
+  }
+  .whatsapp-tooltip {
+    position: fixed;
+    bottom: 34px;
+    right: 100px;
+    background: var(--charcoal);
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 199;
+  }
+  .whatsapp-fab:hover + .whatsapp-tooltip { opacity: 1; }
+
+  /* ── CONTACT STRIP ── */
+  .contact-strip {
+    background: var(--earth);
+    border-top: 3px solid var(--accent);
+    padding: 20px 40px;
+  }
+  .contact-strip-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+  .contact-strip-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.88);
+    font-size: 0.875rem;
+    padding: 6px 24px;
+  }
+  .contact-strip-item svg { color: var(--accent-light); flex-shrink: 0; }
+  .contact-strip-item a { color: rgba(255,255,255,0.88); text-decoration: none; transition: color 0.2s; }
+  .contact-strip-item a:hover { color: var(--accent-light); }
+  .contact-strip-item strong { color: var(--accent-light); }
+  .contact-strip-divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(255,255,255,0.15);
+  }
+  .contact-strip-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #25D366;
+    color: white !important;
+    padding: 8px 20px !important;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+    text-decoration: none !important;
+  }
+  .contact-strip-wa:hover { background: #1db954 !important; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(255,255,255,0.6);
+    padding: 60px 40px 32px;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .footer-brand p {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    margin-top: 16px;
+    max-width: 280px;
+  }
+  .footer-logo-img {
+    height: 110px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+  }
+  .footer-col h4 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 18px;
+  }
+  .footer-col a {
+    display: block;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 0.88rem;
+    line-height: 2;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--accent-light); }
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+  }
+  .footer-bottom p { color: rgba(255,255,255,0.35); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .contact-strip { padding: 16px 20px; }
+    .contact-strip-inner { gap: 4px; justify-content: flex-start; }
+    .contact-strip-item { padding: 4px 12px; font-size: 0.8rem; }
+    .contact-strip-divider { display: none; }
+
+    nav { padding: 0 20px; height: 76px; }
+    .nav-logo-img { height: 64px; }
+    .nav-logo-text { font-size: 1.05rem; }
+    .nav-logo-text span { font-size: 0.78rem; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 76px; left: 0; right: 0;
+      background: rgba(28,32,24,0.97);
+      padding: 24px 28px;
+      gap: 20px;
+      backdrop-filter: blur(12px);
+    }
+    .about {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 60px 20px;
+    }
+    .about-badge { bottom: -10px; left: 10px; }
+    .contact {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding: 60px 20px;
+    }
+    .gallery-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+    }
+    .gallery-item:first-child { grid-column: span 2; grid-row: span 1; }
+    .gallery-item:nth-child(4) { grid-column: span 1; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
+    .form-row { grid-template-columns: 1fr; }
+    .services { padding: 60px 20px; }
+    .gallery { padding: 60px 20px; }
+    .why-us { padding: 60px 20px; }
+  }
+  @media (max-width: 580px) {
+    .stats-strip { flex-direction: row; flex-wrap: wrap; }
+    .stat-item { padding: 20px 16px; min-width: 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item:first-child { grid-column: span 1; }
+    .gallery-item:nth-child(4) { grid-column: span 1; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+    .contact-form { padding: 28px 20px; }
+    .hero-btns { flex-direction: column; align-items: center; }
+    .slide-arrow { display: none; }
+    .area { padding: 60px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <img src="images/logo.png" alt="Multiscapes Group Logo" class="nav-logo-img">
+    <span class="nav-logo-text">Multiscapes <span>Group</span></span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://wa.me/61434294451" class="nav-cta" target="_blank">WhatsApp Us</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO SLIDER -->
+<section class="hero" id="hero">
+  <!-- Slides injected by JS -->
+  <div class="hero-content">
+    <p class="hero-eyebrow">Melbourne's Trusted Landscaping Experts</p>
+    <h1 class="hero-title">Transforming Outdoor<br><em>Spaces</em> Into Living Art</h1>
+    <p class="hero-sub">From lush softscapes to striking hardscapes — we design, build, and maintain every detail of your outdoor vision across Melbourne and surrounds.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="white" width="18" height="18"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Get a Free Quote
+      </a>
+      <a href="#services" class="btn-outline">
+        <svg viewBox="0 0 24 24" fill="white" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        Our Services
+      </a>
+    </div>
+  </div>
+  <div class="slide-caption" id="slideCaption"></div>
+  <div class="slide-dots" id="slideDots"></div>
+  <button class="slide-arrow slide-prev" id="prevBtn">&#8592;</button>
+  <button class="slide-arrow slide-next" id="nextBtn">&#8594;</button>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item"><div class="stat-number">500+</div><div class="stat-label">Projects Completed</div></div>
+  <div class="stat-item"><div class="stat-number">10+</div><div class="stat-label">Years Experience</div></div>
+  <div class="stat-item"><div class="stat-number">5</div><div class="stat-label">Service Categories</div></div>
+  <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Melbourne Focused</div></div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text">
+    <p class="eyebrow">Who We Are</p>
+    <h2>Melbourne's Full-Service Landscape Specialists</h2>
+    <p>Multiscapes Group is a Melbourne-based landscaping company run by Hardeep Singh, delivering end-to-end outdoor solutions — from the first design sketch to the final clean-up. We bring together skilled tradespeople, quality materials, and a genuine passion for great outdoor spaces.</p>
+    <p>Whether you're transforming a brand-new build or revitalising an established property, we handle everything in-house with our own team and machinery.</p>
+    <div class="about-features">
+      <div class="about-feature">Licensed & Insured</div>
+      <div class="about-feature">Own Plant & Equipment</div>
+      <div class="about-feature">End-to-End Service</div>
+      <div class="about-feature">Free Consultation</div>
+      <div class="about-feature">Quality Guarantee</div>
+      <div class="about-feature">On-Time Delivery</div>
+    </div>
+  </div>
+  <div class="about-visual">
+    <img class="about-img-main" src="images/front-yard-landscape.jpg" alt="Beautiful completed backyard by Multiscapes Group">
+    <div class="about-badge">
+      <div class="about-badge-num">10+</div>
+      <div class="about-badge-text">Years in<br>Melbourne</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header">
+    <p class="eyebrow">What We Do</p>
+    <h2>Complete Outdoor Solutions</h2>
+    <p>From softscaping your garden to constructing hardscape features and everything in between — one team, one call.</p>
+  </div>
+
+  <div class="services-grid">
+
+    <!-- Softscape -->
+    <div class="service-card">
+      <img class="service-card-img" src="images/service-softscape.jpg" alt="Softscape landscaping">
+      <div class="service-card-body">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 008 20C19 20 22 3 22 3c-1 2-8 2-9 6z"/></svg>
+        </div>
+        <h3>Softscape Landscaping</h3>
+        <p>We bring your garden to life with expert planting, lush turf, and precision irrigation systems that keep everything thriving year-round.</p>
+        <div class="service-tags">
+          <span class="tag">Garden Bed Planting</span>
+          <span class="tag">Tree Planting</span>
+          <span class="tag">Turf Laying</span>
+          <span class="tag">Garden Edging</span>
+          <span class="tag">Irrigation Systems</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hardscape -->
+    <div class="service-card">
+      <img class="service-card-img" src="images/service-hardscape.jpg" alt="Hardscape work">
+      <div class="service-card-body">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M13 2.05v2.02c3.95.49 7 3.85 7 7.93 0 3.21-1.81 6-4.72 7.28L13 17v5h5l-1.22-1.22C19.91 19.07 22 15.76 22 12c0-5.18-3.95-9.45-9-9.95zM11 2.05C5.95 2.55 2 6.82 2 12c0 3.76 2.09 7.07 5.22 8.78L6 22h5v-5l-2.28 2.28C7.81 18 6 15.21 6 12c0-4.08 3.05-7.44 7-7.93V2.05z"/></svg>
+        </div>
+        <h3>Hardscape Construction</h3>
+        <p>Driveways, pathways, decking, feature walls, pergolas, fencing, gates — we build durable, beautiful structures that define your outdoor space.</p>
+        <div class="service-tags">
+          <span class="tag">Concrete Work</span>
+          <span class="tag">Colorbond & Timber Fencing</span>
+          <span class="tag">Feature Walls</span>
+          <span class="tag">Pergola & Carport</span>
+          <span class="tag">Merbau & Composite Decking</span>
+          <span class="tag">Sheds</span>
+          <span class="tag">Automated Gates</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Machine Hire -->
+    <div class="service-card">
+      <img class="service-card-img" src="images/service-machine-hire.jpg" alt="Machine hire with operator">
+      <div class="service-card-body">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg>
+        </div>
+        <h3>Machine Hire with Operator</h3>
+        <p>Need earthmoving or excavation done right? Hire our machinery with an experienced operator included — get the job done safely and efficiently.</p>
+        <div class="service-tags">
+          <span class="tag">1.8T Excavator</span>
+          <span class="tag">Mini Dumper</span>
+          <span class="tag">Operated Hire</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Maintenance -->
+    <div class="service-card">
+      <img class="service-card-img" src="images/service-maintenance.jpg" alt="Property maintenance">
+      <div class="service-card-body">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+        </div>
+        <h3>Maintenance Services</h3>
+        <p>Keep your property in prime condition year-round with our comprehensive indoor and outdoor maintenance programs tailored to your property.</p>
+        <div class="service-tags">
+          <span class="tag">Indoor Maintenance</span>
+          <span class="tag">Outdoor Maintenance</span>
+          <span class="tag">Regular Programs</span>
+          <span class="tag">Property Care</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Landscape Design -->
+    <div class="service-card">
+      <img class="service-card-img" src="images/service-landscape-design.jpg" alt="Landscape design">
+      <div class="service-card-body">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+        </div>
+        <h3>Landscape Designing</h3>
+        <p>Every great outdoor space starts with a great plan. Our design service turns your ideas into detailed, achievable concepts before a single shovel hits the ground.</p>
+        <div class="service-tags">
+          <span class="tag">Custom Design Plans</span>
+          <span class="tag">3D Concepts</span>
+          <span class="tag">Consultation</span>
+          <span class="tag">Full Project Design</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="section-header">
+    <p class="eyebrow">Our Work</p>
+    <h2>Recent Projects</h2>
+    <p>A selection of completed projects across Melbourne — each one built with the same care and craftsmanship.</p>
+  </div>
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- Injected by JS -->
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us">
+  <div class="section-header">
+    <p class="eyebrow">The Multiscapes Difference</p>
+    <h2>Why Melbourne Chooses Us</h2>
+    <p>We're not just contractors — we're problem-solvers who take pride in delivering results that last.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-item-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+      </div>
+      <h4>Fully Licensed & Insured</h4>
+      <p>Every project is covered. We hold all required licences and insurance so you have complete peace of mind.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-item-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+      </div>
+      <h4>On-Time Delivery</h4>
+      <p>We respect your time. Our projects are scoped, scheduled, and delivered to agreed timelines without cutting corners.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-item-icon">
+        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      </div>
+      <h4>Own Team & Equipment</h4>
+      <p>No subcontractors for key work. We own our machinery and employ our crew — consistent quality from start to finish.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-item-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      </div>
+      <h4>Quality Guaranteed</h4>
+      <p>We stand behind everything we build. If something isn't right, we make it right — no excuses, no delays.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="area">
+  <h2>Serving Melbourne & Surrounds</h2>
+  <p>We take on projects across metropolitan Melbourne and the surrounding regions. Reach out to confirm availability in your area.</p>
+  <div class="area-map">
+    <div class="area-map-title">Areas We Serve</div>
+    <div class="area-suburbs">
+      <span class="suburb-tag">Melbourne CBD</span>
+      <span class="suburb-tag">Western Suburbs</span>
+      <span class="suburb-tag">Northern Suburbs</span>
+      <span class="suburb-tag">Eastern Suburbs</span>
+      <span class="suburb-tag">South-Eastern Suburbs</span>
+      <span class="suburb-tag">Frankston</span>
+      <span class="suburb-tag">Geelong</span>
+      <span class="suburb-tag">Sunbury</span>
+      <span class="suburb-tag">Werribee</span>
+      <span class="suburb-tag">Pakenham</span>
+      <span class="suburb-tag">Cranbourne</span>
+      <span class="suburb-tag">& More</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-info">
+    <p class="eyebrow">Get In Touch</p>
+    <h2>Ready to Transform Your Outdoor Space?</h2>
+    <p>Reach out for a free, no-obligation quote. We'll discuss your project, visit the site, and provide a detailed proposal — all at no cost to you.</p>
+    <div class="contact-links">
+      <a href="https://wa.me/61434294451" class="contact-link" target="_blank">
+        <div class="contact-link-icon whatsapp">
+          <svg viewBox="0 0 24 24"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345z"/><path d="M20.52 3.449C12.831-3.984.106 1.407.101 11.893c0 2.096.549 4.14 1.595 5.945L.1 24l6.335-1.652c7.905 4.27 17.599-1.134 17.604-10.455.003-7.496-6.302-13.56-3.52-8.444z" opacity="0" style="opacity:1"/><path d="M12.003 2.003c-5.514 0-9.997 4.483-9.997 9.997 0 1.76.462 3.408 1.35 4.848L2 22l5.353-1.327C8.718 21.52 10.33 22 12.002 22c5.515 0 9.998-4.483 9.998-9.997 0-5.514-4.483-9.997-9.997-10z" opacity="0" style="opacity:0"/></svg>
+        </div>
+        <div class="contact-link-text">
+          <strong>WhatsApp (Fastest Response)</strong>
+          <span>+61 434 294 451</span>
+        </div>
+      </a>
+      <a href="tel:+61434294451" class="contact-link">
+        <div class="contact-link-icon phone">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </div>
+        <div class="contact-link-text">
+          <strong>Phone</strong>
+          <span>+61 434 294 451</span>
+        </div>
+      </a>
+      <a href="mailto:info@multiscapes.com.au" class="contact-link">
+        <div class="contact-link-icon email">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </div>
+        <div class="contact-link-text">
+          <strong>Email</strong>
+          <span>info@multiscapes.com.au</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="contact-form">
+    <h3>Request a Free Quote</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" placeholder="John" id="fname">
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" placeholder="Smith" id="lname">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" placeholder="04XX XXX XXX" id="fphone">
+      </div>
+      <div class="form-group">
+        <label>Suburb</label>
+        <input type="text" placeholder="e.g. Werribee" id="fsuburb">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Service Interested In</label>
+      <select id="fservice">
+        <option value="">Select a service...</option>
+        <option>Softscape Landscaping</option>
+        <option>Hardscape Construction</option>
+        <option>Machine Hire with Operator</option>
+        <option>Maintenance Services</option>
+        <option>Landscape Design</option>
+        <option>Multiple Services / Full Project</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Tell us about your project</label>
+      <textarea placeholder="Describe your project, size, timeline, or any other details..." id="fmessage"></textarea>
+    </div>
+    <button class="btn-submit" onclick="sendWhatsApp()">Send via WhatsApp &#8594;</button>
+  </div>
+</section>
+
+<!-- CONTACT STRIP (visiting card inspired) -->
+<div class="contact-strip">
+  <div class="contact-strip-inner">
+    <div class="contact-strip-item">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      <span><strong>Contact:</strong> Hardeep Singh</span>
+    </div>
+    <div class="contact-strip-divider"></div>
+    <div class="contact-strip-item">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      <span><a href="tel:+61434294451">0434 294 451</a></span>
+    </div>
+    <div class="contact-strip-divider"></div>
+    <div class="contact-strip-item">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      <span><a href="mailto:info@multiscapes.com.au">info@multiscapes.com.au</a></span>
+    </div>
+    <div class="contact-strip-divider"></div>
+    <div class="contact-strip-item">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>
+      <span><strong>ABN:</strong> 57 671 787 394</span>
+    </div>
+    <div class="contact-strip-divider"></div>
+    <div class="contact-strip-item">
+      <a href="https://wa.me/61434294451" target="_blank" class="contact-strip-wa">
+        <svg viewBox="0 0 24 24" fill="white" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="images/logo.png" alt="Multiscapes Group" class="footer-logo-img">
+      <p>Melbourne's trusted landscaping partner for softscaping, hardscaping, machine hire, maintenance, and landscape design.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#services">Softscape Landscaping</a>
+      <a href="#services">Hardscape Construction</a>
+      <a href="#services">Machine Hire</a>
+      <a href="#services">Maintenance</a>
+      <a href="#services">Landscape Design</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="https://wa.me/61434294451" target="_blank">WhatsApp Us</a>
+      <a href="tel:+61434294451">+61 434 294 451</a>
+      <a href="mailto:info@multiscapes.com.au">info@multiscapes.com.au</a>
+      <a href="#about">About Us</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Multiscapes Group. All rights reserved. Melbourne, VIC. &nbsp;|&nbsp; <span style="color:rgba(255,255,255,0.45)">ABN: 57 671 787 394</span></p>
+    <p>Serving Melbourne &amp; Surrounding Areas</p>
+  </div>
+</footer>
+
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/61434294451" class="whatsapp-fab" target="_blank" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+<div class="whatsapp-tooltip">Chat on WhatsApp</div>
+
+<script>
+const SLIDES = [
+  {src: "images/slide-artificial-grass-cladding.jpg", label: "Artificial Grass & Composite Cladding"},
+  {src: "images/slide-backyard-transformation.jpg", label: "Complete Backyard Transformation"},
+  {src: "images/slide-composite-cladding-wall.jpg", label: "Composite Cladding Feature Wall"},
+  {src: "images/slide-concrete-pathway-screening.jpg", label: "Concrete Pathway & Screening"},
+  {src: "images/slide-custom-timber-gate.jpg", label: "Custom Timber Gate"},
+  {src: "images/slide-gazebo-installation.jpg", label: "Gazebo Installation"},
+  {src: "images/slide-merbau-timber-fencing.jpg", label: "Merbau Timber Fencing"},
+  {src: "images/slide-merbau-planter-box.jpg", label: "Merbau Planter Box"},
+  {src: "images/front-yard-landscape.jpg", label: "Front Yard Landscape Design"},
+  {src: "images/slide-concrete-retaining-wall.jpg", label: "Concrete Retaining Wall"},
+  {src: "images/slide-plain-concrete-driveway.jpg", label: "Plain Concrete Driveway"},
+  {src: "images/slide-landscape-renovation.jpg", label: "Landscape Renovation"}
+];
+
+// ── SLIDER ──
+let currentSlide = 0;
+let slideTimer;
+const hero = document.getElementById('hero');
+const captionEl = document.getElementById('slideCaption');
+const dotsEl = document.getElementById('slideDots');
+
+function buildSlider() {
+  SLIDES.forEach((s, i) => {
+    const div = document.createElement('div');
+    div.className = 'slide' + (i === 0 ? ' active' : '');
+    div.innerHTML = '<img src="' + s.src + '" alt="' + s.label + '"><div class="slide-overlay"></div>';
+    hero.insertBefore(div, hero.querySelector('.hero-content'));
+    const dot = document.createElement('button');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Slide ' + (i+1));
+    dot.onclick = () => goTo(i);
+    dotsEl.appendChild(dot);
+  });
+  captionEl.textContent = SLIDES[0].label;
+}
+
+function goTo(n) {
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = (n + SLIDES.length) % SLIDES.length;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+  captionEl.textContent = SLIDES[currentSlide].label;
+  resetTimer();
+}
+
+function resetTimer() {
+  clearInterval(slideTimer);
+  slideTimer = setInterval(() => goTo(currentSlide + 1), 5000);
+}
+
+document.getElementById('prevBtn').onclick = () => goTo(currentSlide - 1);
+document.getElementById('nextBtn').onclick = () => goTo(currentSlide + 1);
+
+buildSlider();
+resetTimer();
+
+// ── GALLERY ──
+const galleryItems = [
+  {src: SLIDES[1].src, label: SLIDES[1].label},
+  {src: SLIDES[8].src, label: SLIDES[8].label},
+  {src: SLIDES[5].src, label: SLIDES[5].label},
+  {src: SLIDES[3].src, label: SLIDES[3].label},
+  {src: SLIDES[2].src, label: SLIDES[2].label},
+  {src: SLIDES[4].src, label: SLIDES[4].label},
+  {src: SLIDES[6].src, label: SLIDES[6].label},
+  {src: SLIDES[9].src, label: SLIDES[9].label},
+  {src: SLIDES[11].src, label: SLIDES[11].label},
+];
+
+const gg = document.getElementById('galleryGrid');
+galleryItems.forEach(item => {
+  const div = document.createElement('div');
+  div.className = 'gallery-item';
+  div.innerHTML = '<img src="' + item.src + '" alt="' + item.label + '" loading="lazy"><div class="gallery-overlay"><span>' + item.label + '</span></div>';
+  gg.appendChild(div);
+});
+
+// ── NAV HAMBURGER ──
+document.getElementById('hamburger').onclick = () => {
+  document.getElementById('navLinks').classList.toggle('open');
+};
+
+// ── NAV SCROLL ──
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('nav');
+  if (window.scrollY > 60) {
+    nav.style.background = 'rgba(28,32,24,0.98)';
+  } else {
+    nav.style.background = 'rgba(28,32,24,0.92)';
+  }
+});
+
+// ── WHATSAPP FORM ──
+function sendWhatsApp() {
+  const fname = document.getElementById('fname').value.trim();
+  const lname = document.getElementById('lname').value.trim();
+  const phone = document.getElementById('fphone').value.trim();
+  const suburb = document.getElementById('fsuburb').value.trim();
+  const service = document.getElementById('fservice').value;
+  const message = document.getElementById('fmessage').value.trim();
+  
+  if (!fname || !phone || !service) {
+    alert('Please fill in at least your name, phone number, and service type.');
+    return;
+  }
+  
+  const text = encodeURIComponent(
+    'Hello Multiscapes Group!\n\n' +
+    'Name: ' + fname + ' ' + lname + '\n' +
+    'Phone: ' + phone + '\n' +
+    (suburb ? 'Suburb: ' + suburb + '\n' : '') +
+    'Service: ' + service + '\n' +
+    (message ? '\nProject Details:\n' + message : '')
+  );
+  
+  window.open('https://wa.me/61434294451?text=' + text, '_blank');
+}
+</script>
+</body>
+</html>
